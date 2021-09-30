@@ -1,0 +1,9 @@
+package com.app.pojos;
+
+public class CheckOutBookHistory {
+
+	public CheckOutBookHistory() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

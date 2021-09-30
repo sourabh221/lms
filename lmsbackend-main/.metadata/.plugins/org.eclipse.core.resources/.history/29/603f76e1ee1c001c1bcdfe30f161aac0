@@ -1,0 +1,16 @@
+package com.app.dao;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.app.pojos.Book;
+import com.app.pojos.LibraryBookDetails;
+import com.app.pojos.LibraryBookId;
+
+public interface LibraryBookDetailsRepository extends JpaRepository<LibraryBookDetails, LibraryBookId>{
+Optional<LibraryBookDetails> findById(LibraryBookId lib);
+Optional<List<Book>> findBooksByLibraryId(int id);
+}

@@ -1,0 +1,17 @@
+package com.app.service;
+
+import com.app.pojos.ReserveBookHistory;
+
+public class ReserveBookHistoryServiceImpl implements IReserveBookHistoryService {
+
+	public ReserveBookHistoryServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public ReserveBookHistory addReserBookHistory(ReserveBookHistory reserveBookHistory) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

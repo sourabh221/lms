@@ -1,0 +1,50 @@
+package com.app.pojos;
+
+import java.time.LocalDate;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@Entity
+@Table(name="check_out_book_tbl")
+@JsonInclude(Include.NON_DEFAULT)
+public class CheckOutBook {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@JsonProperty("checkout_id")
+	private int id;
+	@JsonProperty("reservation_expiry_date")
+	private LocalDate expiryDate;
+	@JsonProperty("checkout_date")
+	private LocalDate checkOutDate;
+	private int userCheckedOut=0;
+	private int libCheckedOut=0;
+	@JsonManagedReference
+	@JoinColumn(name="reservation_history",nullable = false)
+	private ReserveBookHistory	 reservationHistory;
+	public CheckOutBook() {
+		System.out.println("in ctor of "+getClass().getName());
+	}
+	public CheckOutBook(LocalDate expiryDate) {
+		super();
+		System.out.println("in ctor of "+getClass().getName());
+		this.expiryDate = expiryDate;
+	}
+	
+	
+
+}

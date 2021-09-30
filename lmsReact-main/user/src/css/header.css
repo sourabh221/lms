@@ -1,0 +1,7 @@
+.headerli {
+  margin-left: 50px;
+}
+
+.headerDiv:hover {
+  cursor: pointer;
+}

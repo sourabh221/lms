@@ -1,0 +1,44 @@
+.updatebox {
+  width: 700px;
+  height: 790px;
+  padding: 10px;
+  /* border: 2px solid lightgray; */
+  position: relative;
+  top: 30px;
+  left: 400px;
+  background-color: #f5f5dc;
+  -webkit-box-shadow: 5px 5px 3px 2px #7a7e87;
+  box-shadow: 5px 5px 3px 2px #7a7e87;
+}
+
+.updateouter {
+  width: 800px;
+  height: 850px;
+}
+
+.updatebox1 {
+  width: 700px;
+  height: 940px;
+  padding: 10px;
+  /* border: 2px solid lightgray; */
+  position: relative;
+  top: 30px;
+  left: 400px;
+  background-color: #f5f5dc;
+  -webkit-box-shadow: 5px 5px 3px 2px #7a7e87;
+  box-shadow: 5px 5px 3px 2px #7a7e87;
+}
+
+.updateouter1 {
+  width: 800px;
+  height: 990px;
+}
+.updateImage {
+  -webkit-box-shadow: 3px 3px 2px 1.5px #7c7d82;
+  box-shadow: 3px 3px 2px 1.5px #7c7d82;
+}
+
+.updateImageChangeBtn {
+  margin-left: 10px;
+  margin-top: 70px;
+}

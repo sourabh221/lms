@@ -1,0 +1,20 @@
+package com.app.controller.librarian;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.app.service.CheckOutBookServiceImpl;
+import com.app.service.ReserveBookHistoryServiceImpl;
+
+public class LibrarianCheckOutBookController {
+
+	@Autowired
+	CheckOutBookServiceImpl checkOutBookServiceImpl;
+	
+	@Autowired
+	ReserveBookHistoryServiceImpl reserveBookHistoryServiceImpl;
+	
+	public LibrarianCheckOutBookController() {
+		System.out.println("in ctor of "+getClass().getName());
+	}
+
+}

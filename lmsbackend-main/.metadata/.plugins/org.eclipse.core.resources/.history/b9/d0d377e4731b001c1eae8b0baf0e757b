@@ -1,0 +1,43 @@
+package com.app.controller.librarian;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.app.dto.OtherDto;
+import com.app.dto.ResultDto;
+import com.app.pojos.ReturnBook;
+import com.app.service.ReturnBookServiceImpl;
+
+@RestController
+@RequestMapping("/librarian/checkOutBook")
+@CrossOrigin("http://localhost:3050")
+public class LibrarianReturnBookController {
+
+	@Autowired
+	ReturnBookServiceImpl returnBookServiceImpl;
+	
+	
+	public LibrarianReturnBookController() {
+		System.out.println("in ctor of "+getClass().getName());
+	}
+	
+	public ResponseEntity<?> returnBookByLibrarian(@RequestBody OtherDto otherDto){
+		System.out.println("in method returnBookByLibrarian of "+getClass().getName()+" "+otherDto.getId());
+		ResultDto result=new ResultDto("error","something went wrong");
+		try {
+			int id=(Integer) otherDto.getId();
+			ReturnBook returnBook=returnBookServiceImpl.getReturnBookById();
+			
+		} catch (Exception e) {
+			System.out.println("exception caught in returnBookByLibrarian of "+getClass().getName());
+			System.out.println(e.getMessage());
+			result.setData(e.getMessage());
+		}
+		return ResponseEntity.ok(result);
+	}
+
+}

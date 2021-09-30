@@ -1,0 +1,10 @@
+.usertbl th,
+td {
+  text-align: center;
+}
+
+.user {
+  width: 800px;
+  margin-top: 20px;
+  margin-left: 300px;
+}

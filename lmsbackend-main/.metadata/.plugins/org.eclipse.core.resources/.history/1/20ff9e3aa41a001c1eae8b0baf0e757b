@@ -1,0 +1,9 @@
+package com.app.controller.librarian;
+
+public class LibrarianCheckOutBookController {
+
+	public LibrarianCheckOutBookController() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

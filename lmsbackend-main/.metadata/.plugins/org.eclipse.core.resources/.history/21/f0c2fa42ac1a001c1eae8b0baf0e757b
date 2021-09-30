@@ -1,0 +1,11 @@
+package com.app.controller.librarian;
+
+public class LibrarianReserveBookHistoryController {
+
+	
+	
+	public LibrarianReserveBookHistoryController() {
+		System.out.println("in ctor of "+getClass().getName());
+	}
+
+}

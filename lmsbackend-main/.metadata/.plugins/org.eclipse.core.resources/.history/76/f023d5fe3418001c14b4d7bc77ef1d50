@@ -1,0 +1,27 @@
+package com.app.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.app.dao.ReserveBookHistoryRepository;
+import com.app.pojos.ReserveBook;
+import com.app.pojos.ReserveBookHistory;
+
+public class ReserveBookHistoryServiceImpl implements IReserveBookHistoryService {
+	
+	@Autowired
+	ReserveBookHistoryRepository reserveBookHistoryRepository;
+
+	public ReserveBookHistoryServiceImpl() {
+		System.out.println("in constructor of "+getClass().getName());
+	}
+
+	@Override
+	public ReserveBookHistory addReserBookHistory(ReserveBookHistory reserveBookHistory) {
+		
+		return null;
+	}
+
+}

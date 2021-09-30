@@ -1,0 +1,39 @@
+package com.app.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.app.dao.CheckOutBookRepository;
+import com.app.pojos.CheckOutBook;
+
+public class CheckOutBookServiceImpl implements ICheckOutBookService {
+	
+	@Autowired
+	CheckOutBookRepository checkOutBookRepository;
+
+	public CheckOutBookServiceImpl() {
+		System.out.println("in ctor of "+getClass().getName());
+	}
+
+	@Override
+	public CheckOutBook addCheckOutBook(CheckOutBook checkOutBook) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CheckOutBook getCheckOutBookById(int id) {
+		System.out.println("in method getCheckOutBookById of "+getClass().getName());
+		try {
+			Optional<CheckOutBook> optional=checkOutBookRepository.findById(id);
+			if(optional.isPresent()) {
+				return optional.get();
+			}
+		} catch (Exception e) {
+			System.out.println("exception caught in method getCheckOutBookById of "+getClass().getName());
+		}
+		return null;
+	}
+
+}

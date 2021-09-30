@@ -1,0 +1,9 @@
+package com.app.controller.librarian;
+
+public class LibrarianCheckOutBookController {
+
+	public LibrarianCheckOutBookController() {
+		System.out.println("in ctor of "+getClass().getName());
+	}
+
+}

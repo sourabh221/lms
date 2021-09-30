@@ -1,0 +1,9 @@
+package com.app.controller.user;
+
+public class UserReserveBookHistoryController {
+
+	public UserReserveBookHistoryController() {
+		System.out.println("in ctor of "+getClass().getName());
+	}
+
+}

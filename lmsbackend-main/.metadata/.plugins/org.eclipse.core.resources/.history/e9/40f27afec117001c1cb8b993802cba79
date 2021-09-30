@@ -1,0 +1,9 @@
+package com.app.dto;
+
+public class OtherDto {
+
+	public OtherDto() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

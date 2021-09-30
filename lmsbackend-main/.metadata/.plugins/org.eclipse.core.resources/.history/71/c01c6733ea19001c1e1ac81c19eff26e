@@ -1,0 +1,23 @@
+package com.app.service;
+
+import com.app.pojos.CheckOutBook;
+
+public class CheckOutBookServiceImpl implements ICheckOutBookService {
+
+	public CheckOutBookServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public CheckOutBook addCheckOutBook(CheckOutBook checkOutBook) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CheckOutBook getCheckOutBookById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

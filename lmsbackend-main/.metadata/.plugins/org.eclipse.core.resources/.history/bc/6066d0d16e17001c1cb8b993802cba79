@@ -1,0 +1,9 @@
+package com.app.pojos;
+
+public class ReserveBook {
+
+	public ReserveBook() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

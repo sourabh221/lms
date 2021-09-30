@@ -1,0 +1,60 @@
+package com.app.pojos;
+
+import java.time.LocalDate;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class CheckOutBookHistory {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonProperty("checkout_history_id")
+	private int id;
+	@Column(unique = true)
+	@JsonProperty("checkout_id")
+	private int checkoutId;
+	@JsonProperty("checkout_date")
+	private LocalDate checkoutDate;
+	@JsonProperty("return_date")
+	private LocalDate returnDate;
+	private boolean issued;
+	@JsonBackReference
+	@OneToOne
+	@JoinColumn(name="reservation_history",nullable = false)
+	private ReserveBookHistory	 reservationHistory;
+
+	public CheckOutBookHistory() {
+		System.out.println("in ctor of "+getClass().getName());
+			}
+
+	public CheckOutBookHistory(int checkoutId, boolean issued) {
+		super();
+		System.out.println("in ctor of "+getClass().getName());
+		this.checkoutId = checkoutId;
+		this.issued = issued;
+	}
+
+	public CheckOutBookHistory(int checkoutId, LocalDate checkoutDate, boolean issued) {
+		super();
+		System.out.println("in ctor of "+getClass().getName());
+		this.checkoutId = checkoutId;
+		this.checkoutDate = checkoutDate;
+		this.issued = issued;
+	}
+	
+	
+	
+	
+
+	
+	
+
+}

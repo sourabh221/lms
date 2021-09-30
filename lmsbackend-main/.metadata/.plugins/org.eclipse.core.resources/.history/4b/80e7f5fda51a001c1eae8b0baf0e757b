@@ -1,0 +1,91 @@
+package com.app.controller.librarian;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.app.dto.BookDto;
+import com.app.dto.OtherDto;
+import com.app.dto.ResultDto;
+import com.app.pojos.CheckOutBook;
+import com.app.pojos.Library;
+import com.app.pojos.ReserveBook;
+import com.app.pojos.ReserveBookHistory;
+import com.app.service.CheckOutBookServiceImpl;
+import com.app.service.LibraryServiceImpl;
+import com.app.service.ReserveBookHistoryServiceImpl;
+
+public class LibrarianCheckOutBookController {
+	
+	@Autowired
+	LibraryServiceImpl libraryServiceImpl;
+
+	@Autowired
+	CheckOutBookServiceImpl checkOutBookServiceImpl;
+	
+	@Autowired
+	ReserveBookHistoryServiceImpl reserveBookHistoryServiceImpl;
+	
+	public LibrarianCheckOutBookController() {
+		System.out.println("in ctor of "+getClass().getName());
+	}
+	
+	
+	@PutMapping("/fetch-check-out-book-records")
+	public ResponseEntity<?> fetchCheckOutBookRecordsOfLibrary(@RequestBody BookDto bookDto){
+		System.out.println("in method of fetchCheckOutBookRecordsOfLibrary of "+getClass().getName()+" "+bookDto.getLibraryId());
+		ResultDto result=new ResultDto("error","something went wrong");
+		try {
+			Library lib=libraryServiceImpl.GetLibraryBySerialNo(bookDto.getLibraryId());
+			if(lib!=null) {
+				List<ReserveBookHistory> reservations=reserveBookHistoryServiceImpl.getReservationHistoryByLibraryId(lib.getLibraryId());
+				if(reservations!=null) {
+					result.setData(reservations);
+					result.setStatus("success");
+				}else {
+					result.setData("something went wrong while fetching reservation histories");
+				}
+			}else {
+				result.setData("library is not found");
+			}
+		} catch (Exception e) {
+			System.out.println("exception caught in fetchCheckOutBookRecordsOfLibrary of "+getClass().getName());
+			System.out.println(e.getMessage());
+			result.setData(e.getMessage());
+		}
+		return ResponseEntity.ok(result);
+	}
+	
+	
+	@PutMapping("/check-out-by-librarian")
+	public ResponseEntity<?> checkOutBookByLibrarian(@RequestBody OtherDto otherDto){
+		System.out.println("in method of checkOutBookByLibrarian of "+getClass().getName()+" "+otherDto.getId());
+		ResultDto result=new ResultDto("error","something went wrong");
+		try {
+			int id=(Integer)otherDto.getId();
+			CheckOutBook c=checkOutBookServiceImpl.getCheckOutBookById(id);
+			if(c!=null) {
+				c.setUserCheckedOut(1);
+				CheckOutBook c1=checkOutBookServiceImpl.addCheckOutBook(c);
+				if(c1!=null) {
+					result.setData("book checked out successfully");
+					result.setStatus("success");
+				}else {
+					result.setData("something went wrong while checking out");
+				}
+			}else {
+				result.setData("check out book id is invalid");
+			}
+		} catch (Exception e) {
+			System.out.println("exception caught in checkOutBookByLibrarian of "+getClass().getName());
+			System.out.println(e.getMessage());
+			result.setData(e.getMessage());
+		}
+		return ResponseEntity.ok(result);
+	}
+	
+
+}

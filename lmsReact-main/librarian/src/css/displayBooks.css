@@ -1,0 +1,28 @@
+.DisplayBooksClass li {
+  display: inline-block;
+  width: 250px;
+  height: 210px;
+  background-color: white;
+  margin-right: 90px;
+  margin-bottom: 70px;
+  margin-top: 40px;
+  transition: 1s;
+  overflow: hidden;
+}
+
+.DisplayBooksClass li:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 20px rgba(1, 11, 22, 0.945);
+  -moz-box-shadow: 0 0 20px rgba(1, 11, 22, 0.945);
+  -webkit-box-shadow: 0 0 20px rgba(1, 11, 22, 0.945);
+  -o-box-shadow: 0 0 20px rgba(1, 11, 22, 0.945);
+}
+
+.DisplayBooksClass {
+  margin-left: 100px;
+}
+
+.DisplayBooksImageClass {
+  width: 250px;
+  height: 150px;
+}

@@ -1,0 +1,74 @@
+.box {
+  width: 700px;
+  height: 1350px;
+  padding: 10px;
+  /* border: 2px solid lightgray; */
+  position: relative;
+  top: 30px;
+  left: 400px;
+  background-color: #f5f5dc;
+  -webkit-box-shadow: 5px 5px 3px 2px #7a7e87;
+  box-shadow: 5px 5px 3px 2px #7a7e87;
+}
+
+.outer {
+  width: 700px;
+  height: 1500px;
+}
+
+.box1 {
+  width: 700px;
+  height: 250px;
+  padding: 10px;
+  /* border: 2px solid lightgray; */
+  position: relative;
+  top: 30px;
+  left: 400px;
+  background-color: #f5f5dc;
+  -webkit-box-shadow: 5px 5px 3px 2px #7a7e87;
+  box-shadow: 5px 5px 3px 2px #7a7e87;
+}
+
+.outer1 {
+  width: 700px;
+  height: 500px;
+}
+
+.box2 {
+  width: 700px;
+  height: 400px;
+  padding: 10px;
+  /* border: 2px solid lightgray; */
+  position: relative;
+  top: 30px;
+  left: 400px;
+  background-color: #f5f5dc;
+  -webkit-box-shadow: 5px 5px 3px 2px #7a7e87;
+  box-shadow: 5px 5px 3px 2px #7a7e87;
+}
+
+.outer2 {
+  width: 700px;
+  height: 550px;
+}
+
+.searchResultBox {
+  background-color: white;
+  padding-left: 40px;
+  height: 125px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.boxSignUpOtp1 {
+  width: 400px;
+  height: 220px;
+  padding: 10px;
+  /* border: 2px solid lightgray; */
+  position: absolute;
+  top: 150px;
+  left: 570px;
+  background-color: #f5f5dc;
+  -webkit-box-shadow: 5px 5px 3px 2px #7a7e87;
+  box-shadow: 5px 5px 3px 2px #7a7e87;
+}

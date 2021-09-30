@@ -1,0 +1,12 @@
+package com.app.service;
+
+import java.util.List;
+
+import com.app.pojos.LibraryBookDetails;
+import com.app.pojos.ReserveBook;
+
+public interface IReserveBookService {
+List<ReserveBook> getReservationsByLBD(LibraryBookDetails lbd);
+ReserveBook getReservationById(int id);
+int deleteReservation(int id);
+}

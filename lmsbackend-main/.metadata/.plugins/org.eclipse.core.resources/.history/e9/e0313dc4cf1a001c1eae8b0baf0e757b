@@ -1,0 +1,9 @@
+package com.app.pojos;
+
+public class ReturnBookHistory {
+
+	public ReturnBookHistory() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

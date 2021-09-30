@@ -1,0 +1,18 @@
+package com.app.controller.librarian;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/librarian/reserveBookHistory")
+@CrossOrigin("http://localhost:3050")
+public class LibrarianReserveBookHistoryController {
+
+	
+	
+	public LibrarianReserveBookHistoryController() {
+		System.out.println("in ctor of "+getClass().getName());
+	}
+
+}

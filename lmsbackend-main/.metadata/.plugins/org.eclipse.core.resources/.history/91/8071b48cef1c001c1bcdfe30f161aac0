@@ -1,0 +1,10 @@
+package com.app.service;
+
+import com.app.pojos.Library;
+import com.app.pojos.LibraryBookDetails;
+import com.app.pojos.LibraryBookId;
+
+public interface ILibraryBookDetailsService {
+LibraryBookDetails addBook(LibraryBookDetails libBookDetails);
+LibraryBookDetails getByLibraryBookId(LibraryBookId id);
+}

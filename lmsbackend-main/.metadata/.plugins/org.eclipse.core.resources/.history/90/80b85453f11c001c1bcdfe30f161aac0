@@ -1,0 +1,9 @@
+package com.app.controller.user;
+
+public class UserHomeController {
+
+	public UserHomeController() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

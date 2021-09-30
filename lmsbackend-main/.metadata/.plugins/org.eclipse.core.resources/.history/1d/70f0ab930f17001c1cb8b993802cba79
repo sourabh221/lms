@@ -1,0 +1,9 @@
+package com.app.controller.librarian;
+
+public class LibrarianUserController {
+
+	public LibrarianUserController() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

@@ -1,0 +1,9 @@
+package com.app.controller.user;
+
+public class UserLibraryController {
+
+	public UserLibraryController() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

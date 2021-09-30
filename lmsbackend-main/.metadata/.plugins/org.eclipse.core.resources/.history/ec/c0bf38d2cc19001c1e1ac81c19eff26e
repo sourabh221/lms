@@ -1,0 +1,9 @@
+package com.app.controller.user;
+
+public class UserCheckOutBookController {
+
+	public UserCheckOutBookController() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

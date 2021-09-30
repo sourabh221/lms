@@ -1,0 +1,9 @@
+package com.app.pojos;
+
+public class CheckOutBook {
+
+	public CheckOutBook() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

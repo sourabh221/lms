@@ -1,0 +1,10 @@
+.librariantbl th,
+td {
+  text-align: center;
+}
+
+.librarian {
+  width: 800px;
+  margin-top: 20px;
+  margin-left: 300px;
+}

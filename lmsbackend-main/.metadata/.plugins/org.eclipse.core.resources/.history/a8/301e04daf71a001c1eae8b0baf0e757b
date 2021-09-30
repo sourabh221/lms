@@ -1,0 +1,23 @@
+package com.app.service;
+
+import com.app.pojos.ReturnBook;
+
+public class ReturnBookServiceImpl implements IReturnBookService {
+
+	public ReturnBookServiceImpl() {
+		System.out.println("in ctor of "+getClass().getName());
+	}
+
+	@Override
+	public ReturnBook getReturnBookById(int id) {
+		System.out.println("in addReservation of " + getClass().getName() + " " + reserveBook.getBookDetails().getId());
+		try {
+			return reserveBookRepository.save(reserveBook);
+		} catch (Exception e) {
+			System.out.println("exception caught in addReservation " + getClass().getName());
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
+
+}

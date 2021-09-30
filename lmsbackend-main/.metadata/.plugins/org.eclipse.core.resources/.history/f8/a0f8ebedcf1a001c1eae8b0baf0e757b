@@ -1,0 +1,35 @@
+package com.app.pojos;
+
+import java.time.LocalDate;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@Entity
+@Table(name="return_book_history_tbl")
+@JsonInclude(Include.NON_DEFAULT)
+public class ReturnBookHistory {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonProperty("return_book_id")
+	private int id;
+	private int returnId;
+	@Column(name="last_date_to_return")
+	@JsonProperty("last_date_to_return")
+	private LocalDate lastDateToReturn;
+	@Column(name="returned_on")
+	@JsonProperty("returned_on")
+	private LocalDate returnedOn;
+	public ReturnBookHistory() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

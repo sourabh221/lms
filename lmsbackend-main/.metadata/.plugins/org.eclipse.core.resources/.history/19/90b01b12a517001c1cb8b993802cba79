@@ -1,0 +1,163 @@
+package com.app.controller.user;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.List;
+
+import javax.mail.internet.MimeMessage;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.app.dto.BookDto;
+import com.app.dto.ResultDto;
+import com.app.pojos.Book;
+import com.app.pojos.Library;
+import com.app.pojos.LibraryBookDetails;
+import com.app.pojos.LibraryBookId;
+import com.app.pojos.ReserveBook;
+import com.app.pojos.ReserveBookHistory;
+import com.app.pojos.User;
+import com.app.service.BookServiceImpl;
+import com.app.service.LibraryBookDetailsServiceImpl;
+import com.app.service.LibraryServiceImpl;
+import com.app.service.ReserveBookServiceImpl;
+import com.app.service.UserServiceImpl;
+
+@RestController
+@RequestMapping("/user/reserveBook")
+@CrossOrigin("http://localhost:3060")
+public class UserReserveBookController {
+
+	@Autowired
+	UserServiceImpl userServiceImpl;
+	
+	@Autowired
+	BookServiceImpl bookServiceImpl;
+	
+	@Autowired
+	LibraryServiceImpl libraryServiceImpl;
+	
+	@Autowired
+	LibraryBookDetailsServiceImpl libraryBookDetailsServiceImpl;
+	
+	@Autowired
+	ReserveBookServiceImpl reserveBookServiceImpl;
+	
+	@Autowired
+	private JavaMailSender emailSender;
+	
+	public UserReserveBookController() {
+		System.out.println("in ctor of "+getClass().getName());
+	}
+
+	@PostMapping("/add-reservation")
+	public ResponseEntity<?> addBookReservation(@RequestBody BookDto bookDto){
+		System.out.println("in addBookReservation method of "+getClass().getName()+" "+bookDto.getUserId());
+		ResultDto result=new ResultDto("error","something went wrong");
+		try {
+			if(bookDto.getBookId()!=null && bookDto.getLibraryId()!=null&&bookDto.getUserId()!=null) {
+				User u=userServiceImpl.getUserBySerialNo(bookDto.getUserId());
+				if(u!=null) {
+					Library lib=libraryServiceImpl.GetLibraryBySerialNo(bookDto.getLibraryId());
+					if(lib!=null) {
+						Book book=bookServiceImpl.getBySerialNo(bookDto.getBookId());
+						if(book!=null) {
+							LibraryBookDetails bookDetails=libraryBookDetailsServiceImpl.getByLibraryBookId(new LibraryBookId(book.getId(),lib.getLibraryId()));
+							if(bookDetails!=null) {
+								ReserveBook reservation=new ReserveBook();
+								reservation.setPeriod(bookDto.getPeriod());
+								u.addReservation(reservation);
+								bookDetails.addReservation(reservation);
+								LibraryBookDetails lbd=libraryBookDetailsServiceImpl.addBook(bookDetails);
+								if(lbd!=null) {
+									
+								}else {
+									result.setData("while adding reservation something went wrong");
+								}
+							}else {
+								result.setData("library book details is not found");
+							}
+						}else {
+							result.setData("book is not found");
+						}
+					}else {
+						result.setData("library is not found");
+					}
+				}else {
+					result.setData("user is not found");
+				}
+			}else {
+				result.setData("given information is insufficient");
+			}
+		} catch (Exception e) {
+			System.out.println("exception caught in addBookReservation of "+getClass().getName());
+			System.out.println(e.getMessage());
+			result.setData(e.getMessage());
+		}
+		return ResponseEntity.ok(result);
+	}
+	
+	public void getAllReservations(LibraryBookDetails lbd) {
+		System.out.println("in getAllReservations method of "+getClass().getName()+" "+lbd.getLibrary().getLibraryName());
+		try {
+			List<ReserveBook> reservations=reserveBookServiceImpl.getReservationsByLBD(lbd);
+			if(reservations!=null) {
+				for (ReserveBook reserveBook : reservations) {
+					LibraryBookDetails lbd1=libraryBookDetailsServiceImpl.getByLibraryBookId(new LibraryBookId(reserveBook.getBookDetails().getBook().getId(),reserveBook.getBookDetails().getLibrary().getLibraryId()));
+					if(lbd1!=null) {
+						if(lbd.getAvailableBooks()!=0) {
+							
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("exception caught in getAllReservations of "+getClass().getName());
+			System.out.println(e.getMessage());
+			
+		}
+	}
+	
+	public void reservationAvailableMailSender(ReserveBook reservation) {
+		User user=reservation.getUser();
+		Book book=reservation.getBookDetails().getBook();
+		String pathToAttachment = "D:\\DAC\\project\\Template\\reservation_available.html";
+		File file = new File(pathToAttachment);
+		BufferedReader reader = new BufferedReader(new FileReader(file));
+		String line = reader.readLine();
+		String content = "";
+		while (line != null) {
+			content = content + line + System.lineSeparator();
+
+			line = reader.readLine();
+		}
+		reader.close();
+		content = content.replaceAll("firstName", user.getFirstName());
+		content = content.replaceAll("lastName", user.getLastName());
+		content = content.replaceAll("bookTitle", book.getBookTitle());
+		content = content.replaceAll("reservationId", String.valueOf(reservation.getReservationId()));
+		MimeMessage message = emailSender.createMimeMessage();
+
+		MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+		helper.setFrom("krishnapatil291997@gmail.com");
+		helper.setTo(user.getEmail());
+		helper.setSubject("reservation availble for book " + book.getBookTitle());
+		helper.setText(content, true);
+		helper.addInline("image1",
+				new File("D:\\DAC\\project\\Template\\welcome.png"));
+		if (book.getBookCover() != null)
+			helper.addInline("image2",
+					new File("/home/sunbeam/library management system/bookcover/" + book.getBookCover()));
+
+	}
+}

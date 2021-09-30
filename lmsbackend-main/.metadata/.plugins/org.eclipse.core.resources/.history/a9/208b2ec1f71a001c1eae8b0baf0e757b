@@ -1,0 +1,17 @@
+package com.app.service;
+
+import com.app.pojos.ReturnBook;
+
+public class ReturnBookServiceImpl implements IReturnBookService {
+
+	public ReturnBookServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public ReturnBook getReturnBookById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

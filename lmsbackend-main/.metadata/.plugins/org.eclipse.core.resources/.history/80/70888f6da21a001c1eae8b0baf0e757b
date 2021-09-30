@@ -1,0 +1,26 @@
+package com.app.controller.librarian;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.app.service.LibraryBookDetailsServiceImpl;
+import com.app.service.ReserveBookServiceImpl;
+
+@RestController
+@RequestMapping("/user/reserveBook")
+@CrossOrigin("http://localhost:3050")
+public class LibrarianReserveBookController {
+
+	@Autowired
+	LibraryBookDetailsServiceImpl libraryBookDetailsServiceImpl;
+	
+	@Autowired
+	ReserveBookServiceImpl reserveBookServiceImpl;
+	
+	public LibrarianReserveBookController() {
+		System.out.println("in ctor of "+getClass().getName());
+	}
+
+}

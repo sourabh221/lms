@@ -1,0 +1,71 @@
+package com.app.controller.librarian;
+
+import java.time.LocalDate;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.app.dto.BookDto;
+import com.app.dto.OtherDto;
+import com.app.dto.ResultDto;
+import com.app.pojos.ReturnBook;
+import com.app.pojos.ReturnBookHistory;
+import com.app.pojos.User;
+import com.app.service.ReturnBookServiceImpl;
+import com.app.service.UserServiceImpl;
+
+@RestController
+@RequestMapping("/librarian/checkOutBook")
+@CrossOrigin("http://localhost:3050")
+public class LibrarianReturnBookController {
+
+	@Autowired
+	ReturnBookServiceImpl returnBookServiceImpl;
+	
+	@Autowired
+	UserServiceImpl userServiceImpl;
+	
+	
+	public LibrarianReturnBookController() {
+		System.out.println("in ctor of "+getClass().getName());
+	}
+	
+	public ResponseEntity<?> returnBookByLibrarian(@RequestBody BookDto bookDto){
+		System.out.println("in method returnBookByLibrarian of "+getClass().getName()+" "+bookDto.getId());
+		ResultDto result=new ResultDto("error","something went wrong");
+		try {
+			User user=userServiceImpl.getUserBySerialNo(bookDto.getUserId());
+			if(user!=null) {
+				ReturnBook returnBook=returnBookServiceImpl.getReturnBookById(bookDto.getId());
+				if(returnBook!=null) {
+					returnBook.getReservationHistory().getBookDetails().setAvailableBooks(returnBook.getReservationHistory().getBookDetails().getAvailableBooks()+1);
+					returnBook.setLibIsReturn(1);
+					returnBook.getReservationHistory().addReturnBookHistory(new ReturnBookHistory(returnBook.getId(), returnBook.getLastDateToReturn(), LocalDate.now(),user.getUserId()));
+					ReturnBook r1=returnBookServiceImpl.addReturnBook(returnBook);
+					if(r1!=null) {
+						returnBookServiceImpl.deleteReturnBookById(r1.getId());
+						result.setData("book returned successfully");
+						result.setStatus("success");
+					}
+					
+				}else {
+					result.setData("invalid return book id");
+				}
+				
+			}else {
+				result.setData("user not found");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("exception caught in returnBookByLibrarian of "+getClass().getName());
+			System.out.println(e.getMessage());
+			result.setData(e.getMessage());
+		}
+		return ResponseEntity.ok(result);
+	}
+
+}

@@ -1,0 +1,36 @@
+.showPreview {
+  margin-top: 100px;
+  margin-left: 130px;
+  height: 455px;
+  width: 250px;
+  background-color: white;
+  transition: 1s;
+}
+
+.showPreview:hover {
+  transform: scale(1.3);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  -o-box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+.BookListDiv {
+  height: 160px;
+  background-color: white;
+}
+
+.BookListScroll {
+  height: 160px;
+  overflow-y: scroll;
+}
+
+.divScroll {
+  font-size: 16px;
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 0.5px;
+  border-bottom-color: black;
+  border-bottom-style: solid;
+  padding-left: 20px;
+}

@@ -1,0 +1,9 @@
+package com.app.service;
+
+public class ReserveBookServiceImpl {
+
+	public ReserveBookServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

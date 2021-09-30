@@ -1,0 +1,16 @@
+package com.app.controller.user;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.app.service.CheckOutBookServiceImpl;
+
+public class UserCheckOutBookController {
+	
+	@Autowired
+	CheckOutBookServiceImpl checkOutBookServiceImpl
+	
+	public UserCheckOutBookController() {
+		System.out.println("in ctor of "+getClass().getName());
+	}
+
+}

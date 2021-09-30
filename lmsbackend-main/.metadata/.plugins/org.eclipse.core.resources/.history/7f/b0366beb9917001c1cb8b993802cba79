@@ -1,0 +1,13 @@
+package com.app.dao;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.app.pojos.LibraryBookDetails;
+import com.app.pojos.ReserveBook;
+
+public interface ReserveBookRepository extends JpaRepository<ReserveBook, Integer> {
+Optional<List<ReserveBook>> finByBookDetails(LibraryBookDetails lbd);
+}

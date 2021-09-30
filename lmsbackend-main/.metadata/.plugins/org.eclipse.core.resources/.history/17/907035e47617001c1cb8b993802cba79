@@ -1,0 +1,30 @@
+package com.app.pojos;
+
+import java.time.LocalDate;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class ReserveBookHistory {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@Column(unique = true)
+	@JsonProperty("reservation_id")
+	private int reservationId;
+	@JsonProperty("reservation_date")
+	private LocalDate reservationDate;
+	@JsonProperty("checkout_date")
+	private LocalDate checkoutDate;
+	private int period;
+	private int active;
+	
+	public ReserveBookHistory() {
+		System.out.println("in ctor of "+getClass().getName());
+	}
+
+}

@@ -1,0 +1,9 @@
+package com.app.pojos;
+
+public class CheckOutBook {
+
+	public CheckOutBook() {
+		System.out.println("in ctor of "+getClass().getName());
+	}
+
+}

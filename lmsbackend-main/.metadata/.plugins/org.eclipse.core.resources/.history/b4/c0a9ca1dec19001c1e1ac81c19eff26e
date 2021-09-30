@@ -1,0 +1,10 @@
+package com.app.controller.user;
+
+public class UserCheckOutBookController {
+	
+	
+	public UserCheckOutBookController() {
+		System.out.println("in ctor of "+getClass().getName());
+	}
+
+}
